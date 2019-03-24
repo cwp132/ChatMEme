@@ -41,6 +41,8 @@ function saveMessage(messageText) {
   return firebase.firestore().collection('messages').add({
     name: getUserName(),
     text: messageText,
+
+    //here is where we need to replace the message Text with the giphy API
     profilePicUrl: getProfilePicUrl(),
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   }).catch(function(error) {
@@ -257,15 +259,20 @@ function displayMessage(id, timestamp, name, text, picUrl, imageUrl) {
         break;
       }
     }
+    
     messageListElement.insertBefore(div, child);
   }
   if (picUrl) {
     div.querySelector('.pic').style.backgroundImage = 'url(' + addSizeToGoogleProfilePic(picUrl) + ')';
   }
+  // HERE IS WHERE WE NEED TO REPLACE ALL OF THE MESSAGES WITH THE GIPHY API.
   div.querySelector('.name').textContent = name;
   var messageElement = div.querySelector('.message');
   if (text) { // If the message is text.
-    messageElement.textContent = text;
+    messageElement.textContent = text; ///////// gif needs to go here
+    getGiphys(text).then(function(gifyData) {
+      messageElement.innerHTML = displayGif(gifyData)
+    })
     // Replace all line breaks by <br>.
     messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
   } else if (imageUrl) { // If the message is an image.
@@ -276,11 +283,18 @@ function displayMessage(id, timestamp, name, text, picUrl, imageUrl) {
     image.src = imageUrl + '&' + new Date().getTime();
     messageElement.innerHTML = '';
     messageElement.appendChild(image);
+    // add the giphy API HERE. HERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE
+    //getGiphys(text, );
   }
   // Show the card fading-in and scroll to view the new message.
   setTimeout(function() {div.classList.add('visible')}, 1);
   messageListElement.scrollTop = messageListElement.scrollHeight;
   messageInputElement.focus();
+  function displayGif (imgData) {
+    var gifImg = `<img src="${imgData}"/> `
+  
+    return gifImg
+  }
 }
 
 // Enables or disables the submit button depending on the values of the input
@@ -345,3 +359,30 @@ firestore.settings(settings);
 
 // We load currently existing chat messages afind listen to new ones.
 loadMessages();
+
+
+function getGiphys(searchTerm) {
+  console.log(searchTerm);
+  
+var queryURL = "https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC&limit=1&rating=&q=" + searchTerm;
+return $.ajax({
+    url: queryURL,
+    method: 'GET'
+}).then(function(response){
+  console.log(response.data[0].images);
+  var imgData = response.data[0].images.downsized.url;
+  return imgData
+
+  
+});
+}
+//adding the display gif function
+function displayGif (imgData) {
+  var gifImg = `
+    <div>
+      <img src="${imgData}"/>
+    </div>
+  `
+
+  return gifImg
+}
