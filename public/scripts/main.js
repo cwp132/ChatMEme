@@ -1,14 +1,15 @@
 
 'use strict';
 
-// Signs-in Friendly Chat.
+// Signs-in Chat MEme
 function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
+  
 }
 
-// Signs-out of Friendly Chat.
+// Signs-out of Chat MEme
 function signOut() {
   // Sign out of Firebase.
   firebase.auth().signOut();
