@@ -4,7 +4,7 @@
 // Signs-in Chat MEme
 function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
-  var provider = new firebase.auth.GoogleAuthProvider.FacebookAuthProvider.GithubAuthProvider();
+  var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
   
 }
