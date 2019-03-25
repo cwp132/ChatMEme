@@ -6,6 +6,7 @@ function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
+  firebase.auth().signInAnonymously();
 }
 
 // Signs-out of Friendly Chat.
