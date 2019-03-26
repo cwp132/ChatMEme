@@ -24,11 +24,10 @@ function anonymLogin() {
       console.log("signout")
       // User is signed out.
       signOutButtonElement.setAttribute('hidden', 'true');
+      signInButtonElement.removeAttribute('hidden', 'true');
+      anonymousButtonElement.removeAttribute('hidden', 'true');
     }
-    
   });
-
-
 }
 
 // Signs-in Chat MEme
