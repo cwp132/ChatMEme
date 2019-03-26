@@ -1,15 +1,34 @@
 'use strict';
 //anonymaus login
 function anonymLogin() {
-  firebase.auth().signInAnonymausly();
-  firebase.auth().onAuthStateChanged(firebaseUser =>{
-    console.log(firebaseUser);
-    if(firebaseUser){
+  firebase.auth().signInAnonymously().catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    console.log(errorCode);
+    var errorMessage = error.message;
+    console.log(errorMessage);
+    // ...
+  });
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // User is signed in.
+      console.log("signin")
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
+      console.log(isAnonymous);
+      console.log(uid);
       signOutButtonElement.removeAttribute('hidden');
-    }else{
+      signInButtonElement.setAttribute('hidden', 'true');
+      anonymousButtonElement.setAttribute('hidden', 'true');
+    } else {
+      console.log("signout")
+      // User is signed out.
       signOutButtonElement.setAttribute('hidden', 'true');
     }
+    
   });
+
+
 }
 
 // Signs-in Chat MEme
