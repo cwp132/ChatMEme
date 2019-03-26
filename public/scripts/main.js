@@ -135,6 +135,7 @@ function saveMessagingDeviceToken() {
         .set({
           uid: firebase.auth().currentUser.uid
         });
+        return messaging().getToken();
     } else {
       // Need to request permissions to show notifications.
       requestNotificationsPermissions();
