@@ -1,7 +1,7 @@
 'use strict';
-//anonymaus login
+//anonymous login
 function anonymLogin() {
-  firebase.auth().signInAnonymausly();
+  firebase.auth().signInAnonymously();
   firebase.auth().onAuthStateChanged(firebaseUser =>{
     console.log(firebaseUser);
     if(firebaseUser){
