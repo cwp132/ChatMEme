@@ -1,7 +1,6 @@
 'use strict';
-
 //anonymaus login
-function anonymLogin() {
+/*function anonymLogin() {
   firebase.auth().signInAnonymously().catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -9,7 +8,7 @@ function anonymLogin() {
     var errorMessage = error.message;
     console.log(errorMessage);
     // ...
-  });
+  });*/
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
@@ -32,7 +31,7 @@ function anonymLogin() {
   });
 
 
-}
+//}
 // Signs-in Chat MEme
 function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
@@ -428,6 +427,5 @@ function displayGif(imgData) {
       <img src="${imgData}"/>
     </div>
   `
-
   return gifImg
 }
