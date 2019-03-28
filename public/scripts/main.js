@@ -1,4 +1,3 @@
-
 'use strict';
 
 //anonymaus login
@@ -22,7 +21,7 @@ function anonymLogin() {
       signOutButtonElement.removeAttribute('hidden');
       signInButtonElement.setAttribute('hidden', 'true');
       anonymousButtonElement.setAttribute('hidden', 'true');
-    }else{
+    } else {
       console.log("signout")
       // User is signed out.
       signOutButtonElement.setAttribute('hidden', 'true');
@@ -40,7 +39,7 @@ function signIn() {
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
   // firebase.auth().signInAnonymously();
-  
+
 }
 
 // Signs-out of Chat MEme
@@ -80,7 +79,7 @@ function saveMessage(messageText) {
     //here is where we need to replace the message Text with the giphy API
     profilePicUrl: getProfilePicUrl(),
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }).catch(function(error) {
+  }).catch(function (error) {
     console.error('Error writing new message to Firebase Database', error);
   });
 }
@@ -89,16 +88,16 @@ function saveMessage(messageText) {
 function loadMessages() {
   // Create the query to load the last 12 messages and listen for new ones.
   var query = firebase.firestore().collection('messages').orderBy('timestamp', 'desc').limit(12);
-  
+
   // Start listening to the query.
-  query.onSnapshot(function(snapshot) {
-    snapshot.docChanges().forEach(function(change) {
+  query.onSnapshot(function (snapshot) {
+    snapshot.docChanges().forEach(function (change) {
       if (change.type === 'removed') {
         deleteMessage(change.doc.id);
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-                      message.text, message.profilePicUrl, message.imageUrl);
+          message.text, message.profilePicUrl, message.imageUrl);
       }
     });
   });
@@ -113,10 +112,10 @@ function saveImageMessage(file) {
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl(),
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function(messageRef) {
+  }).then(function (messageRef) {
     // 2 - Upload the image to Cloud Storage.
     var filePath = firebase.auth().currentUser.uid + '/' + messageRef.id + '/' + file.name;
-    return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
+    return firebase.storage().ref(filePath).put(file).then(function (fileSnapshot) {
       // 3 - Generate a public URL for the file.
       return fileSnapshot.ref.getDownloadURL().then((url) => {
         // 4 - Update the chat message placeholder with the image’s URL.
@@ -126,25 +125,27 @@ function saveImageMessage(file) {
         });
       });
     });
-  }).catch(function(error) {
+  }).catch(function (error) {
     console.error('There was an error uploading a file to Cloud Storage:', error);
   });
 }
 
 // Saves the messaging device token to the datastore.
 function saveMessagingDeviceToken() {
-  firebase.messaging().getToken().then(function(currentToken) {
+  firebase.messaging().getToken().then(function (currentToken) {
     if (currentToken) {
       console.log('Got FCM device token:', currentToken);
       // Saving the Device Token to the datastore.
       firebase.firestore().collection('fcmTokens').doc(currentToken)
-          .set({uid: firebase.auth().currentUser.uid});
-          return messaging().getToken();
+        .set({
+          uid: firebase.auth().currentUser.uid
+        });
+      return messaging().getToken();
     } else {
       // Need to request permissions to show notifications.
       requestNotificationsPermissions();
     }
-  }).catch(function(error){
+  }).catch(function (error) {
     console.error('Unable to get messaging token.', error);
   });
 }
@@ -152,10 +153,10 @@ function saveMessagingDeviceToken() {
 // Requests permissions to show notifications.
 function requestNotificationsPermissions() {
   console.log('Requesting notifications permission...');
-  firebase.messaging().requestPermission().then(function() {
+  firebase.messaging().requestPermission().then(function () {
     // Notification permission granted.
     saveMessagingDeviceToken();
-  }).catch(function(error) {
+  }).catch(function (error) {
     console.error('Unable to get permission to notify.', error);
   });
 }
@@ -188,7 +189,7 @@ function onMessageFormSubmit(e) {
   e.preventDefault();
   // Check that the user entered a message and is signed in.
   if (messageInputElement.value && checkSignedInWithMessage()) {
-    saveMessage(messageInputElement.value).then(function() {
+    saveMessage(messageInputElement.value).then(function () {
       // Clear message text field and re-enable the SEND button.
       resetMaterialTextfield(messageInputElement);
       toggleButton();
@@ -252,11 +253,11 @@ function resetMaterialTextfield(element) {
 
 // Template for messages.
 var MESSAGE_TEMPLATE =
-    '<div class="message-container">' +
-      '<div class="spacing"><div class="pic"></div></div>' +
-      '<div class="message"></div>' +
-      '<div class="name"></div>' +
-    '</div>';
+  '<div class="message-container">' +
+  '<div class="spacing"><div class="pic"></div></div>' +
+  '<div class="message"></div>' +
+  '<div class="name"></div>' +
+  '</div>';
 
 // Adds a size to Google Profile pics URLs.
 function addSizeToGoogleProfilePic(url) {
@@ -295,7 +296,7 @@ function displayMessage(id, timestamp, name, text, picUrl, imageUrl) {
         break;
       }
     }
-    
+
     messageListElement.insertBefore(div, child);
   }
   if (picUrl) {
@@ -306,14 +307,14 @@ function displayMessage(id, timestamp, name, text, picUrl, imageUrl) {
   var messageElement = div.querySelector('.message');
   if (text) { // If the message is text.
     messageElement.textContent = text; ///////// gif needs to go here
-    getGiphys(text).then(function(gifyData) {
+    getGiphys(text).then(function (gifyData) {
       messageElement.innerHTML = displayGif(gifyData)
     })
     // Replace all line breaks by <br>.
     messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
   } else if (imageUrl) { // If the message is an image.
     var image = document.createElement('img');
-    image.addEventListener('load', function() {
+    image.addEventListener('load', function () {
       messageListElement.scrollTop = messageListElement.scrollHeight;
     });
     image.src = imageUrl + '&' + new Date().getTime();
@@ -323,12 +324,15 @@ function displayMessage(id, timestamp, name, text, picUrl, imageUrl) {
     //getGiphys(text, );
   }
   // Show the card fading-in and scroll to view the new message.
-  setTimeout(function() {div.classList.add('visible')}, 1);
+  setTimeout(function () {
+    div.classList.add('visible')
+  }, 1);
   messageListElement.scrollTop = messageListElement.scrollHeight;
   messageInputElement.focus();
-  function displayGif (imgData) {
+
+  function displayGif(imgData) {
     var gifImg = `<img src="${imgData}"/> `
-  
+
     return gifImg
   }
 }
@@ -347,8 +351,8 @@ function toggleButton() {
 function checkSetup() {
   if (!window.firebase || !(firebase.app instanceof Function) || !firebase.app().options) {
     window.alert('You have not configured and imported the Firebase SDK. ' +
-        'Make sure you go through the codelab setup instructions and make ' +
-        'sure you are running the codelab using `firebase serve`');
+      'Make sure you go through the codelab setup instructions and make ' +
+      'sure you are running the codelab using `firebase serve`');
   }
 }
 
@@ -381,7 +385,7 @@ messageInputElement.addEventListener('keyup', toggleButton);
 messageInputElement.addEventListener('change', toggleButton);
 
 // Events for image upload.
-imageButtonElement.addEventListener('click', function(e) {
+imageButtonElement.addEventListener('click', function (e) {
   e.preventDefault();
   mediaCaptureElement.click();
 });
@@ -392,7 +396,9 @@ initFirebaseAuth();
 
 // Remove the warning about timstamps change. 
 var firestore = firebase.firestore();
-var settings = {timestampsInSnapshots: true};
+var settings = {
+  timestampsInSnapshots: true
+};
 firestore.settings(settings);
 
 // We load currently existing chat messages afind listen to new ones.
@@ -401,21 +407,21 @@ loadMessages();
 
 function getGiphys(searchTerm) {
   console.log(searchTerm);
-  
-var queryURL = "https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC&limit=1&rating=&q=" + searchTerm;
-return $.ajax({
+
+  var queryURL = "https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC&limit=1&rating=&q=" + searchTerm;
+  return $.ajax({
     url: queryURL,
     method: 'GET'
-}).then(function(response){
-  console.log(response.data[0].images);
-  var imgData = response.data[0].images.downsized.url;
-  return imgData
+  }).then(function (response) {
+    console.log(response.data[0].images);
+    var imgData = response.data[0].images.downsized.url;
+    return imgData
 
-  
-});
+
+  });
 }
 //adding the display gif function
-function displayGif (imgData) {
+function displayGif(imgData) {
   var gifImg = `
     <div>
       <img src="${imgData}"/>
