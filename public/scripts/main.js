@@ -414,8 +414,7 @@ function getGiphys(searchTerm) {
     method: 'GET'
   }).then(function (response) {
     console.log(response.data[0].images);
-    var randomGif = Math.floor(Math.random() * 11);
-    var imgData = response.data[randomGif].images.downsized.url;
+    var imgData = response.data[0].images.downsized.url;
     return imgData
 
 
