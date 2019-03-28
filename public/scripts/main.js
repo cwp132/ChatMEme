@@ -12,11 +12,48 @@ function anonymLogin() {
   });
 }
 
+//anonymaus login
+function anonymLogin() {
+  firebase.auth().signInAnonymously().catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    console.log(errorCode);
+    var errorMessage = error.message;
+    console.log(errorMessage);
+    // ...
+  });
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      // User is signed in.
+      console.log("signin")
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
+      console.log(isAnonymous);
+      console.log(uid);
+      signOutButtonElement.removeAttribute('hidden');
+    }else{
+      signInButtonElement.setAttribute('hidden', 'true');
+      anonymousButtonElement.setAttribute('hidden', 'true');
+    
+      console.log("signout")
+      // User is signed out.
+      signOutButtonElement.setAttribute('hidden', 'true');
+      signInButtonElement.removeAttribute('hidden', 'true');
+      anonymousButtonElement.removeAttribute('hidden', 'true');
+    }
+
+  });
+
+
+}
 // Signs-in Chat MEme
 function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
+
+  // firebase.auth().signInAnonymously();
+  
 }
 
 // Signs-out of Chat MEme
@@ -114,9 +151,8 @@ function saveMessagingDeviceToken() {
       console.log('Got FCM device token:', currentToken);
       // Saving the Device Token to the datastore.
       firebase.firestore().collection('fcmTokens').doc(currentToken)
-        .set({
-          uid: firebase.auth().currentUser.uid
-        });
+          .set({uid: firebase.auth().currentUser.uid});
+          return messaging().getToken();
     } else {
       // Need to request permissions to show notifications.
       requestNotificationsPermissions();
@@ -349,6 +385,7 @@ var signInButtonElement = document.getElementById('sign-in');
 var anonymousButtonElement = document.getElementById('anonymous-login');
 var signOutButtonElement = document.getElementById('sign-out');
 var signInSnackbarElement = document.getElementById('must-signin-snackbar');
+var anonymousButtonElement = document.getElementById('anonymous-login');
 
 // Saves message on form submit.
 messageFormElement.addEventListener('submit', onMessageFormSubmit);
