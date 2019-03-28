@@ -408,13 +408,14 @@ loadMessages();
 function getGiphys(searchTerm) {
   console.log(searchTerm);
 
-  var queryURL = "https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC&limit=1&rating=&q=" + searchTerm;
+  var queryURL = "https://api.giphy.com/v1/gifs/search?&api_key=dc6zaTOxFJmzC&limit=10&rating=&q=" + searchTerm;
   return $.ajax({
     url: queryURL,
     method: 'GET'
   }).then(function (response) {
-    console.log(response.data[0].images);
-    var imgData = response.data[0].images.downsized.url;
+    console.log(response);
+    var randomGif = Math.floor(Math.random() * 9);
+    var imgData = response.data[randomGif].images.downsized.url;
     return imgData
 
 
