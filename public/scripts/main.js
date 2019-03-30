@@ -16,6 +16,8 @@ function anonymLogin() {
       console.log("signin")
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
+      console.log(isAnonymous);
+      console.log(uid);
       signOutButtonElement.removeAttribute('hidden');
       signInButtonElement.setAttribute('hidden', 'true');
       anonymousButtonElement.setAttribute('hidden', 'true');
@@ -72,7 +74,8 @@ function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
   return firebase.firestore().collection('messages').add({
     name: getUserName(),
-    text: messageText,
+    text: message,
+    likeVal: like,
 
     //here is where we need to replace the message Text with the giphy API
     profilePicUrl: getProfilePicUrl(),
@@ -80,6 +83,7 @@ function saveMessage(messageText) {
   }).catch(function (error) {
     console.error('Error writing new message to Firebase Database', error);
   });
+  return like
 }
 
 // Loads chat messages history and listens for upcoming ones.
@@ -95,7 +99,7 @@ function loadMessages() {
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-          message.profilePicUrl, message.imageUrl);
+          message.text, message.profilePicUrl, message.imageUrl);
       }
     });
   });
@@ -132,7 +136,7 @@ function saveImageMessage(file) {
 function saveMessagingDeviceToken() {
   firebase.messaging().getToken().then(function (currentToken) {
     if (currentToken) {
-      // console.log('Got FCM device token:', currentToken);
+      console.log('Got FCM device token:', currentToken);
       // Saving the Device Token to the datastore.
       firebase.firestore().collection('fcmTokens').doc(currentToken)
         .set({
@@ -144,7 +148,7 @@ function saveMessagingDeviceToken() {
       requestNotificationsPermissions();
     }
   }).catch(function (error) {
-    // console.error('Unable to get messaging token.', error);
+    console.error('Unable to get messaging token.', error);
   });
 }
 
@@ -255,6 +259,7 @@ var MESSAGE_TEMPLATE =
   '<div class="spacing"><div class="pic"></div></div>' +
   '<div class="message"></div>' +
   '<div class="name"></div>' +
+  '<button id="like">Like<button>' + like +
   '</div>';
 
 // Adds a size to Google Profile pics URLs.
@@ -264,6 +269,15 @@ function addSizeToGoogleProfilePic(url) {
   }
   return url;
 }
+
+//Adds like to each gif
+$("#like").on('click', function () {
+  var like = 0;
+  like++;
+  return like
+});
+
+
 
 // A loading image URL.
 var LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif?a';
@@ -412,7 +426,7 @@ function getGiphys(searchTerm) {
     method: 'GET'
   }).then(function (response) {
     console.log(response);
-    
+
     var imgData = response.data[0].images.downsized.url;
     return imgData
 
