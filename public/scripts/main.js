@@ -16,8 +16,6 @@ function anonymLogin() {
       console.log("signin")
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
-      console.log(isAnonymous);
-      console.log(uid);
       signOutButtonElement.removeAttribute('hidden');
       signInButtonElement.setAttribute('hidden', 'true');
       anonymousButtonElement.setAttribute('hidden', 'true');
@@ -75,6 +73,7 @@ function saveMessage(messageText) {
   return firebase.firestore().collection('messages').add({
     name: getUserName(),
     text: messageText,
+    gif: imgData,
 
     //here is where we need to replace the message Text with the giphy API
     profilePicUrl: getProfilePicUrl(),
@@ -97,7 +96,7 @@ function loadMessages() {
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-          message.text, message.profilePicUrl, message.imageUrl);
+          message.profilePicUrl, message.imageUrl, message.gif);
       }
     });
   });
@@ -134,7 +133,7 @@ function saveImageMessage(file) {
 function saveMessagingDeviceToken() {
   firebase.messaging().getToken().then(function (currentToken) {
     if (currentToken) {
-      console.log('Got FCM device token:', currentToken);
+      // console.log('Got FCM device token:', currentToken);
       // Saving the Device Token to the datastore.
       firebase.firestore().collection('fcmTokens').doc(currentToken)
         .set({
@@ -146,7 +145,7 @@ function saveMessagingDeviceToken() {
       requestNotificationsPermissions();
     }
   }).catch(function (error) {
-    console.error('Unable to get messaging token.', error);
+    // console.error('Unable to get messaging token.', error);
   });
 }
 
