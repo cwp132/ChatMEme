@@ -9,7 +9,7 @@ main,
   padding-bottom: 0;
 }
 
-
+/* flip box stuff */
 
 /* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-box {
@@ -62,6 +62,7 @@ main,
   transform: rotateY(180deg);
 }
 
+/* end flip box stuff */
 
 
 .smallPrint {
@@ -79,16 +80,12 @@ main,
   color: #ab47bc;
 }
 
-#anon-logo {
-  margin-right: 7px;
-}
-
 .log-button {
   padding: 10px 0 0 10px;
 }
 
 .back-image {
-  background: url("https://cdn.pixabay.com/photo/2016/07/25/12/48/turquoise-1540436_960_720.png") no-repeat center center fixed;
+  background: url("../images/bodyBackgound.png") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -167,7 +164,7 @@ main,
 }
 
 .message-container .pic {
-  background-image: url('/images/profile_placeholder.png');
+  background-image: url('/images/anonymous-logo-cyan.png');
   background-repeat: no-repeat;
   width: 30px;
   height: 30px;
@@ -245,7 +242,7 @@ main,
   top: -3px;
   position: relative;
   display: inline-block;
-  background-image: url('/images/profile_placeholder.png');
+  background-image: url('/images/anonymous-logo-cyan.png');
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;
