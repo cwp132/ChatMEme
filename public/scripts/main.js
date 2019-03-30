@@ -75,7 +75,6 @@ function saveMessage(messageText) {
   return firebase.firestore().collection('messages').add({
     name: getUserName(),
     text: message,
-    likeVal: like,
 
     //here is where we need to replace the message Text with the giphy API
     profilePicUrl: getProfilePicUrl(),
@@ -83,7 +82,6 @@ function saveMessage(messageText) {
   }).catch(function (error) {
     console.error('Error writing new message to Firebase Database', error);
   });
-  return like
 }
 
 // Loads chat messages history and listens for upcoming ones.
@@ -261,7 +259,6 @@ var MESSAGE_TEMPLATE =
   '<div class="spacing"><div class="pic"></div></div>' +
   '<div class="message"></div>' +
   '<div class="name"></div>' +
-  '<button id="like">Like<button>' + like +
   '</div>';
 
 // Adds a size to Google Profile pics URLs.
