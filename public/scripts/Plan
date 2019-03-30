@@ -1,0 +1,9 @@
+1. get url to save to firebase instead of text
+a. url is being stored in gifImg
+b. text is beging saved as messageText 
+2. '
+
+106
+
+imageUrl = the actual gif url 
+url = profile pic url 
