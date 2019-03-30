@@ -413,8 +413,8 @@ function getGiphys(searchTerm) {
     method: 'GET'
   }).then(function (response) {
     console.log(response);
-    var randomGif = Math.floor(Math.random() * 9);
-    var imgData = response.data[randomGif].images.downsized.url;
+    
+    var imgData = response.data[0].images.downsized.url;
     return imgData
 
 
