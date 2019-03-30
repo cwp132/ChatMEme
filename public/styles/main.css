@@ -72,6 +72,7 @@ main,
 
 .left {
   text-align: left;
+  padding-left: 60px;
 }
 
 #anonymous-login,
@@ -164,7 +165,7 @@ main,
 }
 
 .message-container .pic {
-  background-image: url('/images/anonymous-logo-cyan.png');
+  background-image: url('/images/anonymous-logo-purple.png');
   background-repeat: no-repeat;
   width: 30px;
   height: 30px;
