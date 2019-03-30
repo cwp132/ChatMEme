@@ -98,8 +98,10 @@ function loadMessages() {
         deleteMessage(change.doc.id);
       } else {
         var message = change.doc.data();
-        displayMessage(change.doc.id, message.timestamp, message.name,
-          message.text, message.profilePicUrl, message.imageUrl);
+
+        displayMessage(change.doc.id, message.timestamp, message.name, message.text,
+          message.profilePicUrl, message.imageUrl);
+
       }
     });
   });
