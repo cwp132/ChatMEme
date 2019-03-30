@@ -73,7 +73,7 @@ function saveMessage(messageText) {
   return firebase.firestore().collection('messages').add({
     name: getUserName(),
     text: messageText,
-    gif: imgData,
+    
 
     //here is where we need to replace the message Text with the giphy API
     profilePicUrl: getProfilePicUrl(),
@@ -95,8 +95,8 @@ function loadMessages() {
         deleteMessage(change.doc.id);
       } else {
         var message = change.doc.data();
-        displayMessage(change.doc.id, message.timestamp, message.name,
-          message.profilePicUrl, message.imageUrl, message.gif);
+        displayMessage(change.doc.id, message.timestamp, message.name, message.text,
+          message.profilePicUrl, message.imageUrl);
       }
     });
   });
