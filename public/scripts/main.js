@@ -74,7 +74,7 @@ function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
   return firebase.firestore().collection('messages').add({
     name: getUserName(),
-    text: message,
+    text: messageText,
 
     //here is where we need to replace the message Text with the giphy API
     profilePicUrl: getProfilePicUrl(),
@@ -268,14 +268,6 @@ function addSizeToGoogleProfilePic(url) {
   }
   return url;
 }
-
-//Adds like to each gif
-$("#like").on('click', function () {
-  var like = 0;
-  like++;
-  return like
-});
-
 
 
 // A loading image URL.
