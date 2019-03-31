@@ -311,3 +311,132 @@ main,
   top: -1px;
   margin-right: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  #messages-card {
+    margin-top: 5px;
+    width: 426px;
+    height: 447px;
+  }
+
+  #messages-card-container {
+    padding: 5px;
+    margin: 0px;
+  }
+
+  .flip-box {
+    margin: 0;
+  }
+
+  .chatMeme {
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 40px;
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  header {
+    height: 113px;
+    padding-bottom: 80px !important;
+  }
+
+  #user-container {
+    top: 72px;
+    background-color: #ba68c8;
+    height: 38px;
+    padding-top: 3px;
+    padding-right: 2px;
+  }
+
+  #user-container #user-pic {
+    top: 2px;
+    width: 33px;
+    height: 33px;
+    background-size: 33px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .mdl-grid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #messages-card-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  #messages-card {
+    margin: 0;
+    padding: 0;
+    width: calc(100%-0px);
+    height: 455px;
+  }
+
+  .flip-box {
+    display: none;
+  }
+
+  #anonymous-login {
+    padding: 0;
+    height: -webkit-fill-available;
+    font-size: x-small;
+    color: cyan;
+    padding-right: 10px;
+  }
+
+  #anon-logo {
+    height: 24px;
+    width: 24px;
+  }
+
+  #sign-in {
+    padding: 0;
+    height: -webkit-fill-available;
+    font-size: x-small;
+    color: cyan;
+    padding-right: 10px;
+  }
+
+  .mdl-button .material-icons {
+    font-size: 26px;
+  }
+
+  .mdl-button {
+    font-size: x-small;
+  }
+
+  #user-pic,
+  #user-name {
+    font-size: small;
+  }
+
+  .mdl-layout__header-row {
+    height: 30px;
+    padding-top: 5px;
+  }
+
+  .material-icons {
+    font-size: 32px;
+  }
+
+  h3 {
+    font-size: 28px;
+    margin: 0;
+  }
+
+  #user-container {
+    top: 56px;
+    height: 34px;
+    padding: 0;
+  }
+
+  header {
+    height: 90px;
+  }
+}
