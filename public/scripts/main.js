@@ -107,7 +107,7 @@ function signIn() {
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
   // firebase.auth().signInAnonymously();
-
+  anonymousButtonElement.setAttribute('hidden', 'true');
 }
 
 // Signs-out of Chat MEme
