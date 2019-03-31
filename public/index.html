@@ -39,6 +39,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Amatic+SC|Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <!-- jQuery lib -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -93,15 +94,41 @@
             </form>
           </div>
         </div>
-        <div class="flip-box">
+        <!-- <div class="flip-box">
           <div class="flip-box-inner">
             <div class="flip-box-front mdl-color-text--purple-400">
               <p class="chatMeme">...a place where words and a picture get together for some fun!</p>
-              <!-- <i class="material-icons">play_circle_outline</i> -->
               <p class="smallPrint">(here is where you sign in)</p>
             </div>
             <div class="flip-box-back mdl-color-text--purple-400">
               <h2>Sign-In!</h2>
+              <div class="left"> -->
+        <!-- anonymous login button and icon -->
+        <!-- <button id="anonymous-login" class="mdl-button mdl-js-button mdl-js-ripple-effect log-button"><img
+                    src="./images/anonymous-logo-purple.png" width="36" height="36" id="anon-logo">
+                  Anonymously
+                </button>
+                <br />
+                <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect log-button">
+                  <i class="material-icons">account_circle</i>With Google
+                </button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front mdl-color-text--purple-400">
+              <h3>.... place where<br>
+                <span class="txt-rotate" data-period="3000" data-rotate='["words and","pictures"]'></span> <br>get
+                together for
+                some fun!</h3>
+              <i class="material-icons">play_circle_outline</i>
+              <!-- <p class="smallPrint">(here is where you sign in)</p> -->
+            </div>
+            <div class="flip-box-back mdl-color-text--purple-400">
+              <h3>Sign-In!</h3>
               <div class="left">
                 <!-- anonymous login button and icon -->
                 <button id="anonymous-login" class="mdl-button mdl-js-button mdl-js-ripple-effect log-button"><img
@@ -116,6 +143,8 @@
             </div>
           </div>
         </div>
+
+
 
         <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
           <div class="mdl-snackbar__text"></div>

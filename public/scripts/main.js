@@ -1,5 +1,75 @@
 'use strict';
 
+
+//styling js letter rotating
+var TxtRotate = function (el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = "";
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function () {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  if (this.isDeleting) {
+    delta /= 2;
+  }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === "") {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 300;
+  }
+
+  setTimeout(function () {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function () {
+  var elements = document.getElementsByClassName("txt-rotate");
+  for (var i = 0; i < elements.length; i++) {
+    var toRotate = elements[i].getAttribute("data-rotate");
+    var period = elements[i].getAttribute("data-period");
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+};
+//media query function for phone size
+function myFunction(x) {
+  if (x.matches) {
+    $("#anonymous-login").prependTo("#user-container");
+    $("#sign-in").prependTo("#user-container");
+  } else {
+    $("#anonymous-login").appendTo(".left");
+    $("#sign-in").appendTo(".left");
+  }
+}
+var x = window.matchMedia("(max-width: 425px)")
+myFunction(x)
+x.addListener(myFunction)
+
+
 //anonymaus login
 function anonymLogin() {
   firebase.auth().signInAnonymously().catch(function (error) {
@@ -39,7 +109,7 @@ function signIn() {
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
   // firebase.auth().signInAnonymously();
-
+  anonymousButtonElement.setAttribute('hidden', 'true');
 }
 
 // Signs-out of Chat MEme
@@ -56,7 +126,7 @@ function initFirebaseAuth() {
 
 // Returns the signed-in user's profile Pic URL.
 function getProfilePicUrl() {
-  return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
+  return firebase.auth().currentUser.photoURL || '/images/anonymous-logo-cyan.png';
 }
 
 // Returns the signed-in user's display name.
