@@ -3,6 +3,10 @@ body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
+h3 {
+  font-weight: 800;
+}
+
 main,
 #messages-card {
   height: 100%;
@@ -10,19 +14,15 @@ main,
 }
 
 /* flip box stuff */
-
-/* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-box {
   background-color: transparent;
   width: 300px;
   height: 400px;
   margin: auto;
-  /* border: solid 1px white; */
   perspective: 1000px;
-  /* Remove this if you don't want the 3D effect */
 }
 
-/* This container is needed to position the front and back side */
+/* Container is needed to position the front and back side */
 .flip-box-inner {
   position: relative;
   width: 100%;
@@ -32,7 +32,7 @@ main,
   transform-style: preserve-3d;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
+/* Horizontal flip  */
 .flip-box:hover .flip-box-inner {
   transform: rotateY(180deg);
 }
@@ -40,7 +40,6 @@ main,
 .flip-box:hover .flip-box-front i {
   display: none;
 }
-
 
 /* Position the front and back side */
 .flip-box-front,
@@ -61,16 +60,9 @@ main,
   background: transparent;
   transform: rotateY(180deg);
 }
-
 /* end flip box stuff */
 
-
-.smallPrint {
-  font-family: 'Amatic SC';
-  font-size: 25px;
-}
-
-.left {
+.login {
   text-align: left;
   padding-left: 60px;
 }
@@ -257,6 +249,10 @@ main,
   padding-right: 10px;
   padding-left: 20px;
 }
+/*#anon-logo
+#anon-logo1 {
+  display: none;
+}*/
 
 #image-form #submitImage {
   width: auto;
@@ -314,9 +310,9 @@ main,
 
 @media screen and (max-width: 768px) {
   #messages-card {
-    margin-top: 5px;
+    margin-top: 15px;
     width: 426px;
-    height: 447px;
+    height: 900px;
   }
 
   #messages-card-container {
@@ -326,6 +322,7 @@ main,
 
   .flip-box {
     margin: 0;
+    margin-top: 200px;
   }
 
   .chatMeme {
@@ -341,6 +338,16 @@ main,
   header {
     height: 113px;
     padding-bottom: 80px !important;
+  }
+
+  #messages-card {
+    height: 500px;
+    width: -webkit-fill-available;
+    margin-left: 25px;
+  }
+
+  .flip-box {
+    margin: 5px 10px 0 146px;
   }
 
   #user-container {
@@ -374,8 +381,7 @@ main,
   #messages-card {
     margin: 0;
     padding: 0;
-    width: calc(100%-0px);
-    height: 455px;
+    height: 655px;
   }
 
   .flip-box {
@@ -388,11 +394,6 @@ main,
     font-size: x-small;
     color: cyan;
     padding-right: 10px;
-  }
-
-  #anon-logo {
-    height: 24px;
-    width: 24px;
   }
 
   #sign-in {
@@ -438,5 +439,24 @@ main,
 
   header {
     height: 90px;
+  }
+
+  #message-form button {
+    color: cyan;
+    background: darkorchid;
+    width: 50px;
+  }
+
+  #message-form .mdl-textfield {
+    width: calc(100% - 73px);
+  }
+
+  #user-container #user-pic {
+    width: 24px;
+    height: 24px;
+  }
+
+  #user-container #user-name {
+    font-size: x-small;
   }
 }
