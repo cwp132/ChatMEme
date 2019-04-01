@@ -55,22 +55,26 @@ window.onload = function () {
     }
   }
 };
+
 //media query function for phone size
 function myFunction(x) {
   if (x.matches) {
     $("#anonymous-login").prependTo("#user-container");
     $("#sign-in").prependTo("#user-container");
+    $("#anon-logo").addClass("hidden");
+    $("#anon-logo1").removeClass("hidden");
   } else {
-    $("#anonymous-login").appendTo(".left");
-    $("#sign-in").appendTo(".left");
+    $("#anonymous-login").appendTo(".login");
+    $("#sign-in").appendTo(".login");
+    $("#anon-logo1").addClass("hidden");
+    $("#anon-logo").removeClass("hidden");
   }
 }
-var x = window.matchMedia("(max-width: 425px)")
-myFunction(x)
-x.addListener(myFunction)
+var x = window.matchMedia("(max-width: 425px)");
+myFunction(x);
+x.addListener(myFunction);
 
-
-//anonymaus login
+//anonymous login
 function anonymLogin() {
   firebase.auth().signInAnonymously().catch(function (error) {
     // Handle Errors here.
@@ -78,12 +82,12 @@ function anonymLogin() {
     console.log(errorCode);
     var errorMessage = error.message;
     console.log(errorMessage);
-    // ...
   });
+
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      // User is signed in.
-      console.log("signin")
+      //Anonymous user is signed in.
+      //console.log("signin")
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
       console.log(isAnonymous);
@@ -92,17 +96,15 @@ function anonymLogin() {
       signInButtonElement.setAttribute('hidden', 'true');
       anonymousButtonElement.setAttribute('hidden', 'true');
     } else {
-      console.log("signout")
-      // User is signed out.
+      //console.log("signout")
+      //Anonymous user is signed out.
       signOutButtonElement.setAttribute('hidden', 'true');
       signInButtonElement.removeAttribute('hidden', 'true');
       anonymousButtonElement.removeAttribute('hidden', 'true');
     }
-
   });
-
-
 }
+
 // Signs-in Chat MEme
 function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
@@ -116,6 +118,7 @@ function signIn() {
 function signOut() {
   // Sign out of Firebase.
   firebase.auth().signOut();
+  anonymousButtonElement.removeAttribute('hidden', 'true');
 }
 
 // Initiate firebase auth.
