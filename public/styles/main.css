@@ -325,7 +325,7 @@ main,
   }
 
   #user-container #user-pic {
-    top: 2px;
+    top: 1px;
     width: 33px;
     height: 33px;
     background-size: 33px;
@@ -420,6 +420,9 @@ main,
   #user-container #user-pic {
     width: 24px;
     height: 24px;
+    background-position: center;
+    background-size: cover;
+    top: 6px;
   }
 
   #user-container #user-name {
