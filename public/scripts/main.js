@@ -68,7 +68,7 @@ function myFunction(x) {
     $("#anon-logo").removeClass("hidden");
   }
 }
-var x = window.matchMedia("(max-width: 425px)");
+var x = window.matchMedia("(max-width: 500px)");
 myFunction(x);
 x.addListener(myFunction);
 
@@ -88,8 +88,8 @@ function anonymLogin() {
       //console.log("signin")
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
-      //console.log(isAnonymous);
-      //console.log(uid);
+      console.log(isAnonymous);
+      console.log(uid);
       signOutButtonElement.removeAttribute('hidden');
       signInButtonElement.setAttribute('hidden', 'true');
       anonymousButtonElement.setAttribute('hidden', 'true');
@@ -108,7 +108,6 @@ function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
   var provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider);
-  // firebase.auth().signInAnonymously();
   anonymousButtonElement.setAttribute('hidden', 'true');
 }
 
@@ -116,7 +115,7 @@ function signIn() {
 function signOut() {
   // Sign out of Firebase.
   firebase.auth().signOut();
-  anonymousButtonElement.removeAttribute('hidden', 'true');
+  //anonymousButtonElement.removeAttribute('hidden', 'true');
 }
 
 // Initiate firebase auth.
