@@ -82,13 +82,6 @@ main,
   background-size: cover;
 }
 
-/*.chatMeme {
-  margin-top: 30px;
-  font-weight: bold;
-  font-size: 47px;
-  line-height: 49px;
-}*/
-
 #messages-card-container {
   height: calc(100% - 35px);
   padding-bottom: 0;
@@ -269,28 +262,6 @@ main,
   display: none;
 }
 
-@media screen and (max-width: 610px) {
-  header {
-    height: 113px;
-    padding-bottom: 80px !important;
-  }
-
-  #user-container {
-    top: 72px;
-    background-color: #ba68c8;
-    height: 38px;
-    padding-top: 3px;
-    padding-right: 2px;
-  }
-
-  #user-container #user-pic {
-    top: 2px;
-    width: 33px;
-    height: 33px;
-    background-size: 33px;
-  }
-}
-
 .mdl-textfield__label:after {
   background-color: #00e5ff;
 }
@@ -320,14 +291,6 @@ main,
     margin: 0;
     margin-top: 200px;
   }
-
-  /*.chatMeme {
-    margin-top: 30px;
-    font-weight: bold;
-    font-size: 28px;
-    line-height: 40px;
-    padding: 30px;
-  }*/
 }
 
 @media screen and (max-width: 610px) {

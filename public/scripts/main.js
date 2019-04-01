@@ -1,6 +1,4 @@
 'use strict';
-
-
 //styling js letter rotating
 var TxtRotate = function (el, toRotate, period) {
   this.toRotate = toRotate;
@@ -90,8 +88,8 @@ function anonymLogin() {
       //console.log("signin")
       var isAnonymous = user.isAnonymous;
       var uid = user.uid;
-      console.log(isAnonymous);
-      console.log(uid);
+      //console.log(isAnonymous);
+      //console.log(uid);
       signOutButtonElement.removeAttribute('hidden');
       signInButtonElement.setAttribute('hidden', 'true');
       anonymousButtonElement.setAttribute('hidden', 'true');
