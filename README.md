@@ -8,13 +8,13 @@ ChatMEme is a cloud based Chat app that only uses gifs to communicate,
 
 ## Technologies Used: 
 * Firestore 
-*Giphy Api 
-*Material Design Lite 
-*JavaScript 
-*CSS
-*HTML
-*AJAX
-*Jquery
+* Giphy Api 
+* Material Design Lite 
+* JavaScript 
+* CSS
+* HTML
+* AJAX
+* Jquery
 
 ## Firestore: 
 We decided to use FireStore to handle the Cloud storage and hosting, The main trouble we had with Firestore was the fact that only the person that created the database had the ability to deploy and view the data in the database. This made it tough to work on the project solo. If I would have started on a Github repository and deployed it using Github pages to start out with so we could have instant updating of the web site. Another problem we had was the Anonymous Login, we had learn the way to write rules which is basically just Read, Write, Create. Originally the rules only allowed google accounts to use the chat, so we had to change authentication rules so it would allow anybody to read and write as long as they were logged in.
