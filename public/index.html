@@ -17,7 +17,7 @@
 
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="Chat MEme">
+  <meta name="application-name" congtent="Chat MEme">
   <meta name="theme-color" content="#303F9F">
 
   <!-- Add to homescreen for Safari on iOS -->
@@ -94,45 +94,21 @@
             </form>
           </div>
         </div>
-        <!-- <div class="flip-box">
-          <div class="flip-box-inner">
-            <div class="flip-box-front mdl-color-text--purple-400">
-              <p class="chatMeme">...a place where words and a picture get together for some fun!</p>
-              <p class="smallPrint">(here is where you sign in)</p>
-            </div>
-            <div class="flip-box-back mdl-color-text--purple-400">
-              <h2>Sign-In!</h2>
-              <div class="left"> -->
-        <!-- anonymous login button and icon -->
-        <!-- <button id="anonymous-login" class="mdl-button mdl-js-button mdl-js-ripple-effect log-button"><img
-                    src="./images/anonymous-logo-purple.png" width="36" height="36" id="anon-logo">
-                  Anonymously
-                </button>
-                <br />
-                <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect log-button">
-                  <i class="material-icons">account_circle</i>With Google
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
         <div class="flip-box">
           <div class="flip-box-inner">
             <div class="flip-box-front mdl-color-text--purple-400">
               <h3>.... place where<br>
-                <span class="txt-rotate" data-period="3000" data-rotate='["words and","pictures"]'></span> <br>get
-                together for
-                some fun!</h3>
+                <span class="txt-rotate" data-period="3000" data-rotate='["words and","pictures"]'></span><br>
+                get together for some fun!</h3>
               <i class="material-icons">play_circle_outline</i>
-              <!-- <p class="smallPrint">(here is where you sign in)</p> -->
             </div>
             <div class="flip-box-back mdl-color-text--purple-400">
               <h3>Sign-In!</h3>
-              <div class="left">
+              <div class="login">
                 <!-- anonymous login button and icon -->
-                <button id="anonymous-login" class="mdl-button mdl-js-button mdl-js-ripple-effect log-button"><img
-                    src="./images/anonymous-logo-purple.png" width="36" height="36" id="anon-logo">
+                <button id="anonymous-login" class="mdl-button mdl-js-button mdl-js-ripple-effect log-button">
+                  <img src="./images/anonymous-logo-purple.png" width="36" height="36" id="anon-logo">
+                  <img src="./images/anonymous-logo-cyan.png" width="24" height="24" id="anon-logo1" class="hidden">
                   Anonymously
                 </button>
                 <br />
@@ -146,7 +122,7 @@
 
 
 
-        <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+        <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar color--purple-300">
           <div class="mdl-snackbar__text"></div>
           <button class="mdl-snackbar__action" type="button"></button>
         </div>
