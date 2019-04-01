@@ -60,6 +60,7 @@ main,
   background: transparent;
   transform: rotateY(180deg);
 }
+
 /* end flip box stuff */
 
 .login {
@@ -275,10 +276,10 @@ main,
   margin-right: 5px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 839px) {
   #messages-card {
     margin-top: 15px;
-    width: 426px;
+    width: 415px;
     height: 900px;
   }
 
@@ -293,7 +294,13 @@ main,
   }
 }
 
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 757px) {
+  #messages-card {
+    width: 395px;
+  }
+}
+
+@media screen and (max-width: 736px) {
   header {
     height: 113px;
     padding-bottom: 80px !important;
@@ -325,7 +332,7 @@ main,
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 500px) {
   .mdl-grid {
     width: 100%;
     margin: 0;
@@ -340,7 +347,7 @@ main,
   #messages-card {
     margin: 0;
     padding: 0;
-    height: 655px;
+    height: 700px;
   }
 
   .flip-box {
