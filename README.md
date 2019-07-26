@@ -38,3 +38,4 @@ When we originally came up with the idea for a chat app we had tons of features 
 ## Improvements: 
 The number one thing I would like to add is a way to have the URl saved to the cloud instead of the text, this would allow us to have random gifs for the same search term, but it would show the same across all computers. Another thing we would like to add is seperate channels like slack. I would also like to add a share button to the gif so you are able to get the url. Also we would like to add a notification aspect so we can see when people respond to. 
  
+![Chat MEme Front Page](https://github.com/cwp132/Group-5/blob/master/chatMEme.png)
